@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('backend:server');
 var http = require('http');
+const { Socket } = require('dgram');
 
 /**
  * Get port from environment and store in Express.
@@ -20,6 +21,16 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+
+//socket io config
+
+const io = require('socket.io')(server)
+io.on("connect", (socket) => {
+  console.log("one user connected")
+  socket.on("sendMessage", (msg) => {
+    io.emit("receiveMessage", msg)
+  })
+})
 
 /**
  * Listen on provided port, on all network interfaces.
