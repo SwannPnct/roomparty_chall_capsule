@@ -29,17 +29,18 @@ export const styles = StyleSheet.create({
   }
 });
 
+export const rooms = ["Family", "Work", "Sport"]
+
 const Stack = createStackNavigator();
 
 export default function App() {
-
-  const rooms = ["Family", "Work", "Sport"]
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home}/>
-        <Stack.Screen name="ChatFamily" component={Chat}/>
+        {rooms.map((e) => (
+          <Stack.Screen name={e} component={Chat}/>
+        ))}
       </Stack.Navigator>
     </NavigationContainer>
   );
