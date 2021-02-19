@@ -26,9 +26,9 @@ var server = http.createServer(app);
 
 const io = require('socket.io')(server)
 io.on("connect", (socket) => {
-  console.log("one user connected")
+  socket.on("savePseudo", pseudo => socket.username = pseudo)
   socket.on("sendMessage", (msg) => {
-    io.emit("receiveMessage", msg)
+    io.emit("receiveMessage", {pseudo: socket.username, msg})
   })
 })
 

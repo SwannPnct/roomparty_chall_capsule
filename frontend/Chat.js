@@ -12,8 +12,8 @@ export default function Chat(props) {
     const generateMessages = messages.map((e,i) => (
         <ListItem key={i} bottomDivider style={styles.list}>
         <ListItem.Content>
-          <ListItem.Title>{e}</ListItem.Title>
-          
+          <ListItem.Title>{e.pseudo}</ListItem.Title>
+          <ListItem.Subtitle>{e.msg}</ListItem.Subtitle>
         </ListItem.Content>
       </ListItem>
     ))
@@ -24,8 +24,9 @@ export default function Chat(props) {
     }
 
     useEffect(() => {
-        socket.on("receiveMessage", (msg) => {
-            setMessages([...messages, msg])
+        socket.on("receiveMessage", (obj) => {
+            console.log(obj);
+            setMessages([...messages, {pseudo: obj.pseudo, msg: obj.msg}])
         })
     },[messages])
 
