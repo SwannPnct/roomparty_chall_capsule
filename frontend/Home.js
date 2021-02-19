@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {styles,socket,rooms} from './App'
-import {View} from 'react-native'
+import {View, Text} from 'react-native'
 import {Input, Button} from 'react-native-elements'
 import { Fontisto } from '@expo/vector-icons'
 

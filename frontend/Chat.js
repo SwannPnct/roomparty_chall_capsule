@@ -25,7 +25,6 @@ export default function Chat(props) {
 
     useEffect(() => {
         socket.on("receiveMessage", (obj) => {
-            console.log(obj);
             setMessages([...messages, {pseudo: obj.pseudo, msg: obj.msg}])
         })
     },[messages])
